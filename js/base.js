@@ -353,24 +353,24 @@ $(function(){
 	$("#big-box").on("touchend",function(e){
 		var p=e.originalEvent.changedTouches[0].clientX;
 		if(p-pos>=30){
-			pre=index+1;
-			if(pre>2){
-				return;
-			}
-			$("#big-box").find(".link").removeClass("chuxian");
-			$("#big-box").find(".link").eq(pre).addClass("chuxian");
-			$("#big-box").find(".link").eq(pre).find("span").addClass("action").end().siblings().find("span").removeClass("action");
-			index=pre;
-		}
-		if(p-pos<-30){
 			next=index-1;
 			if(pre<0){
 				return;
 			}
 			$("#big-box").find(".link").removeClass("chuxian");
 			$("#big-box").find(".link").eq(next).addClass("chuxian");
-			$("#big-box").find(".link").eq(next).find("span").addClass("action").end().siblings().find("span").removeClass("action");
+			$(".anniu-ct").find(".div").eq(next).find("span").addClass("action").end().siblings().find("span").removeClass("action");
 			index=next;
+		}
+		if(p-pos<-30){
+			pre=index+1;
+			if(pre>2){
+				return;
+			}
+			$("#big-box").find(".link").removeClass("chuxian");
+			$("#big-box").find(".link").eq(pre).addClass("chuxian");
+			$(".anniu-ct").find(".div").eq(pre).find("span").addClass("action").end().siblings().find("span").removeClass("action");
+			index=pre;
 		}
 	})
 	
