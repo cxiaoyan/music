@@ -354,7 +354,7 @@ $(function(){
 		var p=e.originalEvent.changedTouches[0].clientX;
 		if(p-pos>=30){
 			next=index-1;
-			if(pre<0){
+			if(next<0){
 				return;
 			}
 			$("#big-box").find(".link").removeClass("chuxian");
