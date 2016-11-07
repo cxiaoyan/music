@@ -303,7 +303,6 @@ $(function(){
          }
      }
 	makeGeci();
-	
 	function geci() {
          var lrc=database[currentIndex].geci;
          if(!lrc){
@@ -312,53 +311,83 @@ $(function(){
          }else{
              $(lrc).each(function(i,v){
                  if(lrc[i].time==minitues(audio.currentTime)){
-                 	$('.ct').html("")
-                     for(var a=i;a<lrc.length;a++){
-                         $('<li>').text(lrc[a].lrc).appendTo('.rightb-box');
-                         $(".rightb-box").find("li").eq(0).css("color","#31c27c")
-                     }
+                 	$('.rightb-box').html("")
+                 	if(i<=3){
+                 		 for(var a=0;a<lrc.length;a++){
+	                        $('<li>').text(lrc[a].lrc).appendTo('.rightb-box');
+							$(".rightb-box").find("li").eq(i).css("color","#31c27c")
+	                     }
+                 	}
+                 	if(i>3){
+                 		 for(var a=i-3;a<lrc.length;a++){
+	                        $('<li>').text(lrc[a].lrc).appendTo('.rightb-box');
+							$(".rightb-box").find("li").eq(3).css("color","#31c27c")
+	                     }
+                 	}
+                    
                  }
              })
          }
      }
 	geci();
+	
+	
+//	自动轮播
+	var index=1;
+	var pre;
+	var next;
+//	var t=setInterval(move,15000);
+	function move(){
+		pre=index+1;
+		if(pre>2){
+			pre=0;
+		}
+		$("#big-box").find(".link").eq(index).removeClass("chuxian");
+		$("#big-box").find(".link").eq(pre).addClass("chuxian");
+		index=pre;
+	}
 //	滑动进入左右页面
-//	$("#big-box").on("touchstart",function(e){
-//		pos=e.originalEvent.changedTouches[0].clientX;
-//	})
-//	$("#big-box").on("touchend",function(e){
-//		var p=e.originalEvent.changedTouches[0].clientX;
-//		var index=0;
-//		var pre=index-1;
-//		var next=index+1;
-////		if(next==$(".link").length){
-////			return;
-////		}
-////		if(pre<0){
-////			return;
-////		}
-//		if(p-pos>=30){
-//			index=0;
-//			$(this).find(".link").eq(index).addClass("chuxian").siblings().removeClass("chuxian");
-//		index+=1;
-//		console.log(index)
-//		}
-//		console.log(index)
-//		if(p-pos<-30){
-//			index=1;
-////			next=index+1;
-//			$(this).find(".link").eq(index).addClass("chuxian").siblings().removeClass("chuxian");
-//			
-//			index+=1;
-//		}
-//	})
+	$("#big-box").on("touchstart",function(e){
+		pos=e.originalEvent.changedTouches[0].clientX;
+	})
+	$("#big-box").on("touchend",function(e){
+		var p=e.originalEvent.changedTouches[0].clientX;
+		if(p-pos>=30){
+			pre=index+1;
+			if(pre>2){
+				return;
+			}
+			$("#big-box").find(".link").removeClass("chuxian");
+			$("#big-box").find(".link").eq(pre).addClass("chuxian");
+			$("#big-box").find(".link").eq(pre).find("span").addClass("action").end().siblings().find("span").removeClass("action");
+			index=pre;
+		}
+		if(p-pos<-30){
+			next=index-1;
+			if(pre<0){
+				return;
+			}
+			$("#big-box").find(".link").removeClass("chuxian");
+			$("#big-box").find(".link").eq(next).addClass("chuxian");
+			$("#big-box").find(".link").eq(next).find("span").addClass("action").end().siblings().find("span").removeClass("action");
+			index=next;
+		}
+	})
+	
+	
+	
 	
 	$(".anniu-ct").on("touchend",".div",function(){
+//		clearInterval(t)
 		var index=$(this).index();
-		$(this).find("span").addClass("action").siblings().removeClass("action");
+		$(this).find("span").addClass("action").end().siblings().find("span").removeClass("action");
 		$(".link").eq(index).addClass("chuxian").siblings().removeClass("chuxian");
 	})
 
+
+	
+	$(".bt-lis2").on("touchend",function(){
+	})
 
 
 
@@ -387,6 +416,17 @@ $(function(){
 	
 	
 	
+//	添加喜欢的歌曲；
+    $(".like").on("click",function(e){
+    	e.stopPropagation(); 
+    	$(this).toggleClass("red");
+    })
+    
+    
+    $(".bt-lis-like").on("touchend",function(){
+    	$(this).toggleClass("red");
+    })
+	
 	//	删除列表歌曲
     list.on("touchend",".del",function(){
     	var li=$(this).closest("li");
@@ -407,6 +447,7 @@ $(function(){
     	}
     	render();
     })
+    
     
     
 //	点击那首歌播放哪首歌
@@ -655,5 +696,8 @@ $(function(){
 	})
 	$audio.on("timeupdate",function(){
 		
+	geci();
+	makeGeci();
+	
 	})
 })

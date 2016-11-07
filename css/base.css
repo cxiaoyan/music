@@ -88,7 +88,7 @@ body {
 	top: 0;
 	opacity: 0;
 	overflow: hidden;
-	transition: all 0.3s linear;
+	transition: all 0.6s linear ;
 }
 .left-box{
 	position: absolute;
@@ -98,7 +98,7 @@ body {
 	height: 100%;
 	z-index: 100;
 	opacity: 0;
-	transition: all 0.3s linear;
+	transition: all 0.6s linear;
 }
 .rightb-box{
 	position: absolute;
@@ -110,7 +110,7 @@ body {
 	margin-top: 0.1rem;
 	overflow: hidden;
 	opacity: 0;
-	transition: all 0.3s linear;
+	transition: all 0.6s linear;
 }
 .chuxian{
 	left: 0;
@@ -556,7 +556,7 @@ body {
 	bottom: 0;
 	top: 0;
 	margin: auto;
-	width: 1.36rem;
+	width: 1.45rem;
 	font-size: 74px;
 	overflow: hidden;
 	color: #31c27c;
@@ -672,7 +672,7 @@ body {
 .ge-lins{
 	width: 100%;
 	overflow: hidden;
-	padding:0.3rem;
+	padding:0.2rem 0.3rem;
 	padding-bottom: 0.18rem;
 	border-bottom: 1px solid #333a43;
 }
@@ -713,9 +713,17 @@ body {
 	font-size: 24px;
 	color: #9d9fa3;
 	margin-left: 0.3rem;
+	width: 0.6rem;
+	height: 0.6rem;
+	/*background: red;*/
+	text-align: center;
+	line-height: 0.6rem;
 }
 .caozuo .del{
 	font-size: 21px;
+}
+.caozuo .red{
+	color: #fc0243;
 }
 .song-list{
 	position: relative;
@@ -791,9 +799,9 @@ body {
 }
 .font{
 	position: absolute;
-	left: -0.02rem;
-	top: -0.31rem;
-	font-size: 24px;
+	left: -0.03rem;
+	top: -0.32rem;
+	font-size: 25px;
 	color: #31c27c;
 	display: none;		
 }
@@ -818,4 +826,7 @@ body {
 	font-size: 36px;
 	color: #222e3b;
 	margin-top: 0.35rem;
+}
+.bottom .red{
+	color: #fc0243;
 }
